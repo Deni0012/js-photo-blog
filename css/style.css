@@ -7,8 +7,14 @@
 }
 
 h1,
-p {
-    font-family: "Edu TAS Beginner", cursive;
+h4 {
+    font-family: "Edu TAS Beginner", sans-serif;
+}
+
+
+p{
+    font-family: "Sometype Mono", monospace;
+
 }
 
 /* GENERAL */
@@ -77,4 +83,44 @@ header div {
     top: 0;
     left: 50%;
     transform: translate(-50%, -45%);
+}
+
+
+/* Media Queries */
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 940px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .container {
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 500px;
+    }
+
+    .card {
+        width: calc(50% - 1rem);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+    #card-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }

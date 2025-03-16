@@ -27,7 +27,8 @@ function createHTML(member) {
 
     element.innerHTML = ` 
                 <img src="${member.url}" alt="">
-                <p>${member.title}.</p>
+                <h4>${member.title}.</h4>
+                <p>${member.date}.</p>
                 <img class="pin" src="img/pin.svg" alt="">`;
 
     return element
