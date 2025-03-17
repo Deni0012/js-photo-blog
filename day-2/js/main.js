@@ -1,13 +1,28 @@
 const urlApi = "https://lanciweb.github.io/demo/api/pictures/";
+const bodyElement = document.body;
 const parentElement = document.getElementById("card-container");
+const overlayElement = document.getElementById("overlay-container");
+const closeButtonElement = document.getElementById("close-button");
+const overlayImgElement = document.getElementById("overlay-img");
+
+let cardElements;
 
 // Chiamata all'endpoint urlAPI alla risposta invoca la funzione renderHTML
-axios.get(urlApi).then(response => renderHTML(parentElement, response.data)).catch(error => console.error(error));
+axios.get(urlApi)
+.then(response => renderHTML(parentElement, response.data))
+.catch(error => console.error(error));
+
+
+closeButtonElement.addEventListener("click", closeOverlay);
 
 /*
 Funzione che accetta due parametri:
 - un elemento "padre" che è il contenitore in cui appendere i nuovi elementi.
 - un array su cui itineremo per generare un nuovo elemento con createHTML per ogni elemento dell'array.
+- Dopo aver renderizzato gli elementi aggiungiamo a loro un evento, non possiamo farlo direttamente sul selettore cardElements
+  quindi itineriamo negli elementi del array cardElements aggiungendo ad ognuno di essi il addEventListener.
+- Definiamo la variabile imgElement e gli diamo come valore l'elemento img nel div Card.
+- Quindi dalla variabile imgElement ci prendiamo la proprietà source e la assegniamo alla proprietà source dell'elemento overlayImgElement
 */
 function renderHTML(parent, childArray) {
     parent.innerHTML = "";
@@ -16,6 +31,18 @@ function renderHTML(parent, childArray) {
         let childElement = createHTML(element);
         parent.appendChild(childElement);
     }
+
+    cardElements = document.querySelectorAll(".card");
+
+    cardElements.forEach(card => {
+        card.addEventListener("click", function () {
+            let imgElement = card.querySelector("img");
+            if (imgElement) {
+                overlayImgElement.src = imgElement.src;
+            }
+            openOverlay();
+        });
+    });
 }
 
 /*
@@ -27,8 +54,8 @@ function createHTML(member) {
 
     element.innerHTML = ` 
                 <img src="${member.url}" alt="">
-                <h4>${member.title}.</h4>
-                <p>${member.date}.</p>
+                <p class="date-card">${member.date}.</p>
+                <p>${member.title.toUpperCase()}.</p>
                 <img class="pin" src="img/pin.svg" alt="">`;
 
     return element

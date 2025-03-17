@@ -36,6 +36,50 @@ body {
     margin: 0 auto;
 }
 
+.d-none {
+    display: none !important;
+}
+
+.no-scroll {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* OVERLAY */
+
+#overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 5;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 3rem;
+}
+
+#close-button {
+    margin-top: 2rem;
+    padding: 1rem 1.2rem;
+    text-align: center;
+    display: inline-block;
+}
+
+#overlay-container div {
+    max-width: 600px;
+    max-height: 600px;
+}
+
+#overlay-img {
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+}
+
 /* HEADER */
 
 header {
@@ -64,6 +108,19 @@ header div {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-shadow: 1.4px 2.9px 2.9px hsl(0deg 0% 0% / 0.46);
+    transition: transform ease-in-out 0.5s;
+    z-index: 1;
+}
+
+.card:hover {
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 3px 5px 5px hsl(0deg 0% 0% / 0.46);
+    z-index: 2;
+}
+
+.card:hover .pin {
+    display: none;
 }
 
 .card img:first-child {
@@ -74,7 +131,16 @@ header div {
 
 .card p {
     flex-grow: 1;
+    font-size: 1.5rem;
+    font-weight: 600;
     padding: 0 1rem 1rem;
+}
+
+.card .date-card {
+    font-family: "Sometype Mono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: gray;
 }
 
 .pin {
@@ -83,6 +149,7 @@ header div {
     top: 0;
     left: 50%;
     transform: translate(-50%, -45%);
+    transition: display ease-in-out 1s;
 }
 
 
@@ -98,6 +165,13 @@ header div {
     .container {
         width: 700px;
     }
+          .card {
+              width: calc(50% - 1rem);
+          }
+    
+          #card-container {
+              margin-bottom: 2rem;
+          }
 }
 
 @media screen and (max-width: 768px) {
