@@ -60,3 +60,19 @@ function createHTML(member) {
 
     return element
 }
+
+/*
+Funzione che apre l'overlay
+*/
+function openOverlay() {
+    bodyElement.classList.add("no-scroll")
+    overlayElement.classList.remove("d-none");
+}
+
+/*
+Funzione che chiude l'overlay
+*/
+function closeOverlay() {
+    overlayElement.classList.add("d-none")
+    bodyElement.classList.remove("no-scroll")
+}
